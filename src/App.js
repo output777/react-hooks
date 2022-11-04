@@ -1,16 +1,26 @@
 import './App.css';
-import useInput from './hooks/useInput';
+import useTabs from './hooks/useTabs/useTabs';
+
+const content = [
+  {
+    tab: 'Section 1',
+    content: "I'm the content of the Section 1",
+  },
+  {
+    tab: 'Section 2',
+    content: "I'm the content of the Section 2",
+  },
+];
 
 function App() {
-  const validator = (value) => value.length <= 10;
-  const name = useInput('', validator);
-  const nickname = useInput('', validator);
+  const {currentItem, changeItem} = useTabs(1, content);
 
   return (
     <div className="App">
-      <h1>Hello</h1>
-      <input type="text" placeholder="Name" {...name} />
-      <input type="text" placeholder="Nickname" {...nickname} />
+      {content.map((section, index) => (
+        <button onClick={() => changeItem(index)}>{section.tab}</button>
+      ))}
+      <div>{currentItem.content}</div>
     </div>
   );
 }

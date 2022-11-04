@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react'
+import { useCallback, useState } from 'react'
 
 const useInput = (initialValue, validator) => {
   const [value, setValue] = useState(initialValue);
@@ -13,7 +13,6 @@ const useInput = (initialValue, validator) => {
       setValue(value);
     }
   }, []);
-  
   return {value, onChange};
 }
 
